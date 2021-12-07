@@ -77,7 +77,6 @@ function Index({}) {
 					<img src="parrot.gif" />
 					<img src="parrot.gif" />
 					<img src="parrot.gif" />
-					<img src="parrot.gif" />
 				</div>
 			</header>
 			<hr />
