@@ -20773,6 +20773,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       onChange: (event) => setInput(event.target.value)
     }), /* @__PURE__ */ import_react.default.createElement("form", null, /* @__PURE__ */ import_react.default.createElement("label", null, "Number of rounds:"), /* @__PURE__ */ import_react.default.createElement("input", {
       type: "number",
+      pattern: "[0-9]*",
       step: 1,
       min: 0,
       value: rounds,

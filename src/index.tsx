@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react"
 import ReactDOM from "react-dom"
 
-import { mimcHash, mimcWithRounds } from "./mimc.js"
+import { mimcWithRounds } from "./mimc.js"
 
 const encodings = {
 	hex: "Hex",
@@ -107,6 +107,7 @@ function Index({}) {
 				<label>Number of rounds:</label>
 				<input
 					type="number"
+					pattern="[0-9]*"
 					step={1}
 					min={0}
 					value={rounds}
