@@ -20760,8 +20760,6 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       src: "parrot.gif"
     }), /* @__PURE__ */ import_react.default.createElement("img", {
       src: "parrot.gif"
-    }), /* @__PURE__ */ import_react.default.createElement("img", {
-      src: "parrot.gif"
     }))), /* @__PURE__ */ import_react.default.createElement("hr", null), /* @__PURE__ */ import_react.default.createElement("form", null, /* @__PURE__ */ import_react.default.createElement("label", null, "Input encoding:"), inputEncodings.map((key) => /* @__PURE__ */ import_react.default.createElement("label", {
       key
     }, /* @__PURE__ */ import_react.default.createElement("input", {
