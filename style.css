@@ -81,13 +81,6 @@ footer code {
 	font-family: inherit;
 }
 
-footer.invalid {
-	height: 46px;
-	background: repeating-linear-gradient(
-		-45deg,
-		rgba(255, 69, 13, 0.75),
-		rgb(255, 69, 13, 0.75) 6px,
-		#fff 6px,
-		#fff 12px
-	);
+footer.invalid code {
+	color: orangered;
 }

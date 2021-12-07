@@ -21,6 +21,9 @@ type OutputEncoding = "hex" | "dec"
 const inputEncodings: InputEncoding[] = ["hex", "dec", "utf8"]
 const outputEncodings: OutputEncoding[] = ["hex", "dec"]
 
+const errorOutput =
+	"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+
 function Index({}) {
 	const encoder = useMemo(() => new TextEncoder(), [])
 	const [inputEncoding, setInputEncoding] = useState<InputEncoding>("hex")
@@ -131,7 +134,7 @@ function Index({}) {
 				))}
 			</form>
 			<footer className={output === null ? "invalid" : undefined}>
-				<code>{output}</code>
+				<code>{output || errorOutput}</code>
 			</footer>
 		</>
 	)

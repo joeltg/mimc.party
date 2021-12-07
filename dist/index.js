@@ -20711,6 +20711,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   };
   var inputEncodings = ["hex", "dec", "utf8"];
   var outputEncodings = ["hex", "dec"];
+  var errorOutput = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
   function Index({}) {
     const encoder = (0, import_react.useMemo)(() => new TextEncoder(), []);
     const [inputEncoding, setInputEncoding] = (0, import_react.useState)("hex");
@@ -20787,7 +20788,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       onChange: (event) => setOutputEncoding(event.target.value)
     }), encodings[key]))), /* @__PURE__ */ import_react.default.createElement("footer", {
       className: output === null ? "invalid" : void 0
-    }, /* @__PURE__ */ import_react.default.createElement("code", null, output)));
+    }, /* @__PURE__ */ import_react.default.createElement("code", null, output || errorOutput)));
   }
   var main = document.querySelector("main");
   import_react_dom.default.render(/* @__PURE__ */ import_react.default.createElement(Index, null), main);
