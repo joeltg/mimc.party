@@ -20767,7 +20767,6 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       checked: key === inputEncoding,
       onChange: (event) => setInputEncoding(event.target.value)
     }), encodings[key]))), /* @__PURE__ */ import_react.default.createElement("textarea", {
-      className: value === null ? "invalid" : void 0,
       placeholder,
       value: input,
       onChange: (event) => setInput(event.target.value)
@@ -20786,7 +20785,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       name: "type",
       checked: key === outputEncoding,
       onChange: (event) => setOutputEncoding(event.target.value)
-    }), encodings[key]))), output && /* @__PURE__ */ import_react.default.createElement("footer", null, /* @__PURE__ */ import_react.default.createElement("code", null, output)));
+    }), encodings[key]))), /* @__PURE__ */ import_react.default.createElement("footer", {
+      className: output === null ? "invalid" : void 0
+    }, /* @__PURE__ */ import_react.default.createElement("code", null, output)));
   }
   var main = document.querySelector("main");
   import_react_dom.default.render(/* @__PURE__ */ import_react.default.createElement(Index, null), main);

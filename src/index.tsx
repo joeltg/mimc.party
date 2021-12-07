@@ -98,7 +98,6 @@ function Index({}) {
 				))}
 			</form>
 			<textarea
-				className={value === null ? "invalid" : undefined}
 				placeholder={placeholder}
 				value={input}
 				onChange={(event) => setInput(event.target.value)}
@@ -131,11 +130,9 @@ function Index({}) {
 					</label>
 				))}
 			</form>
-			{output && (
-				<footer>
-					<code>{output}</code>
-				</footer>
-			)}
+			<footer className={output === null ? "invalid" : undefined}>
+				<code>{output}</code>
+			</footer>
 		</>
 	)
 }
