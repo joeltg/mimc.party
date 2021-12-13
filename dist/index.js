@@ -20711,7 +20711,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   };
   var inputEncodings = ["hex", "dec", "utf8"];
   var outputEncodings = ["hex", "dec"];
-  var errorOutput = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+  var errorOutput = {
+    hex: "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    dec: "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+  };
   function Index({}) {
     const encoder = (0, import_react.useMemo)(() => new TextEncoder(), []);
     const [inputEncoding, setInputEncoding] = (0, import_react.useState)("hex");
@@ -20730,8 +20733,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         return BigInt(input);
       } else if (inputEncoding === "utf8") {
         const data = encoder.encode(input);
-        const hex = Array.from(data).map((n) => n.toString(16));
-        return BigInt("0x" + hex.join(""));
+        let n = 0n;
+        for (let i = 0; i < data.length; i++) {
+          n += BigInt(data[data.length - i - 1]) * 256n ** BigInt(i);
+        }
+        return n;
       } else {
         return null;
       }
@@ -20788,7 +20794,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       onChange: (event) => setOutputEncoding(event.target.value)
     }), encodings[key]))), /* @__PURE__ */ import_react.default.createElement("footer", {
       className: output === null ? "invalid" : void 0
-    }, /* @__PURE__ */ import_react.default.createElement("code", null, output || errorOutput)));
+    }, /* @__PURE__ */ import_react.default.createElement("code", null, output || errorOutput[outputEncoding])));
   }
   var main = document.querySelector("main");
   import_react_dom.default.render(/* @__PURE__ */ import_react.default.createElement(Index, null), main);

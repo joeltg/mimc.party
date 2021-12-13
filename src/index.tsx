@@ -21,8 +21,10 @@ type OutputEncoding = "hex" | "dec"
 const inputEncodings: InputEncoding[] = ["hex", "dec", "utf8"]
 const outputEncodings: OutputEncoding[] = ["hex", "dec"]
 
-const errorOutput =
-	"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+const errorOutput = {
+	hex: "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+	dec: "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+}
 
 function Index({}) {
 	const encoder = useMemo(() => new TextEncoder(), [])
@@ -48,8 +50,11 @@ function Index({}) {
 			return BigInt(input)
 		} else if (inputEncoding === "utf8") {
 			const data = encoder.encode(input)
-			const hex = Array.from(data).map((n) => n.toString(16))
-			return BigInt("0x" + hex.join(""))
+			let n = 0n
+			for (let i = 0; i < data.length; i++) {
+				n += BigInt(data[data.length - i - 1]) * 256n ** BigInt(i)
+			}
+			return n
 		} else {
 			return null
 		}
@@ -134,7 +139,7 @@ function Index({}) {
 				))}
 			</form>
 			<footer className={output === null ? "invalid" : undefined}>
-				<code>{output || errorOutput}</code>
+				<code>{output || errorOutput[outputEncoding]}</code>
 			</footer>
 		</>
 	)
