@@ -40,32 +40,35 @@ function Index({}) {
 
 	const [input, setInput] = useState("")
 
-	const value = useMemo<bigint | null>(() => {
-		const valid = patterns[inputEncoding].test(input)
+	const values = useMemo<bigint[] | null>(() => {
+		const inputs = input.split(/[\n ,]+/)
+		const valid = inputs.every((input) => patterns[inputEncoding].test(input))
 		if (valid === false) {
 			return null
 		} else if (inputEncoding === "hex") {
-			return BigInt("0x" + input)
+			return inputs.map((input) => BigInt("0x" + input))
 		} else if (inputEncoding === "dec") {
-			return BigInt(input)
+			return inputs.map((input) => BigInt(input))
 		} else if (inputEncoding === "utf8") {
-			const data = encoder.encode(input)
-			let n = 0n
-			for (let i = 0; i < data.length; i++) {
-				n += BigInt(data[data.length - i - 1]) * 256n ** BigInt(i)
-			}
-			return n
+			return inputs.map((input) => {
+				const data = encoder.encode(input)
+				let n = 0n
+				for (let i = 0; i < data.length; i++) {
+					n += BigInt(data[data.length - i - 1]) * 256n ** BigInt(i)
+				}
+				return n
+			})
 		} else {
 			return null
 		}
 	}, [inputEncoding, input])
 
 	const output = useMemo<string | null>(() => {
-		if (value === null) {
+		if (values === null) {
 			return null
 		}
 
-		const output = hash(value)
+		const output = hash(...values)
 		if (outputEncoding === "hex") {
 			return output.toString(16)
 		} else if (outputEncoding === "dec") {
@@ -73,7 +76,7 @@ function Index({}) {
 		} else {
 			return null
 		}
-	}, [value, hash, outputEncoding])
+	}, [values, hash, outputEncoding])
 
 	return (
 		<>
@@ -110,6 +113,12 @@ function Index({}) {
 				value={input}
 				onChange={(event) => setInput(event.target.value)}
 			></textarea>
+			<p>
+				<em>
+					separate multiple inputs with any combination of commas, spaces, or
+					newlines
+				</em>
+			</p>
 			<form>
 				<label>Number of rounds:</label>
 				<input

@@ -59,19 +59,27 @@ form input[type="number"] {
 	font-size: 16px;
 }
 
+p {
+	margin: 0.5em 0;
+}
+
+em {
+	color: grey;
+}
+
 textarea {
 	font-size: 18px;
 	width: 100%;
 	resize: vertical;
 	font-family: inherit;
-	margin: calc(-1 * var(--overhang));
+	margin: 0 calc(-1 * var(--overhang));
 	padding: var(--overhang);
 	border: 2px inset;
 }
 
 footer {
 	line-break: anywhere;
-	margin: calc(-1 * var(--overhang));
+	margin: 0 calc(-1 * var(--overhang));
 	padding: var(--overhang);
 	border: 2px inset;
 }
