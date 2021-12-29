@@ -10,7 +10,7 @@ const encodings = {
 }
 
 const patterns = {
-	hex: /^([0-9a-fA-F]{2})+$/,
+	hex: /^[0-9a-fA-F]+$/,
 	dec: /^[0-9]+$/,
 	utf8: /^.+$/,
 }
